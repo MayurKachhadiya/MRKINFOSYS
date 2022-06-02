@@ -1,28 +1,43 @@
-import logo from "./logo.svg";
-import "./App.css";
-import AbcIcon from "@mui/icons-material/Abc";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import React,{useState} from 'react';
+import Header from './Header';
+import Create from './Create';
+import Note from './Note';
+import Footer from './Footer';
 
 function App() {
+  const [addItem, setAddItem] = useState([]);
+  const addbtn=(input)=>{
+    setAddItem((prevval)=>{
+      return [...prevval,input];
+    }); 
+  }
+  const onDelete = (id)=>{
+    setAddItem((old)=>
+     old.filter((currdata,indx)=>{
+        return indx !== id;
+      })
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <AbcIcon />
-        <AccountBalanceIcon />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+   <Header/>
+   <Create passnote={addbtn} />
+
+   {addItem.map((val,index) => {
+    return( 
+      <Note
+      key={index}
+      id={index}
+      title={val.title}
+      content={val.content}
+      deleteItem={onDelete}
+    />
+    );
+   })}
+ 
+   <Footer/>
+   </>
   );
 }
 
