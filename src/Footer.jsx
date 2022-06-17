@@ -1,12 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const Footer = ()=>{
-    const year = new Date().getFullYear();
+const Footer = () =>{
     return(
         <>
-            <div className="footer">
-                <p align="center">Copyright © {year}</p>
-            </div>
+            <footer className='w-100 bg-light text-center'>
+                <p>@ 2022 MRKINFOSYS. All Rights Reserved | Terms and Conditions</p>
+            </footer>
         </>
     );
 }
